@@ -1,0 +1,149 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Dark Theme Variables (Refined Minimal Next-Gen) */
+    --background: 220 15% 10%; /* Darker, slightly less blue-gray */
+    --foreground: 210 30% 85%; /* Cooler white */
+    --card: 220 15% 13%; /* Slightly lighter than bg, for subtle depth */
+    --card-foreground: 210 30% 85%;
+    --popover: 220 15% 12%;
+    --popover-foreground: 210 30% 85%;
+    --primary: 200 100% 60%; /* Vibrant cyan - adapted from PRD accent */
+    --primary-foreground: 220 20% 10%; /* Dark text for contrast */
+    --secondary: 220 15% 25%; /* Muted for less important elements */
+    --secondary-foreground: 210 25% 70%;
+    --muted: 220 15% 20%;
+    --muted-foreground: 210 25% 60%;
+    --accent: 236 70% 65%; /* Derived from PRD primary, brighter for accent */
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 70% 55%; /* Slightly softer red */
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 15% 20%;
+    --input: 220 15% 16%;
+    --ring: 200 100% 65%; /* Matches primary */
+    --radius: 0.5rem; /* Slightly more rounded */
+
+    --chart-1: var(--primary);
+    --chart-2: var(--accent);
+    --chart-3: 210 100% 65%;
+    --chart-4: 43 80% 60%;
+    --chart-5: 27 90% 65%;
+
+    /* Sidebar specific (can inherit more from base now) */
+    --sidebar-background: 220 15% 9%;
+    --sidebar-foreground: 210 30% 80%;
+    --sidebar-primary: var(--primary);
+    --sidebar-primary-foreground: var(--primary-foreground);
+    --sidebar-accent: 220 15% 18%;
+    --sidebar-accent-foreground: var(--primary); /* Use primary for hover text color */
+    --sidebar-border: 220 15% 15%;
+    --sidebar-ring: var(--ring);
+  }
+
+  .light {
+    /* Light Theme Variables */
+    --background: 0 0% 97%; /* Off-white */
+    --foreground: 220 20% 20%; /* Dark gray-blue text */
+    --card: 0 0% 100%; /* White */
+    --card-foreground: 220 20% 20%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 20% 20%;
+    --primary: 236 60% 55%; /* PRD Primary, lighter for actions */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 20% 90%; /* Light gray */
+    --secondary-foreground: 220 15% 40%;
+    --muted: 220 20% 92%;
+    --muted-foreground: 220 15% 50%;
+    --accent: 181 90% 50%; /* PRD Accent, slightly deeper */
+    --accent-foreground: 220 20% 10%;
+    --destructive: 0 80% 60%; /* Brighter red for light mode */
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 10% 88%;
+    --input: 220 10% 94%;
+    --ring: 236 60% 60%; /* Matches primary */
+
+    --chart-1: var(--primary);
+    --chart-2: var(--accent);
+    --chart-3: 210 80% 55%;
+    --chart-4: 43 70% 50%;
+    --chart-5: 27 80% 55%;
+
+    --sidebar-background: 0 0% 96%;
+    --sidebar-foreground: 220 20% 30%;
+    --sidebar-primary: var(--primary);
+    --sidebar-primary-foreground: var(--primary-foreground);
+    --sidebar-accent: 220 20% 88%;
+    --sidebar-accent-foreground: var(--primary);
+    --sidebar-border: 220 10% 80%;
+    --sidebar-ring: var(--ring);
+  }
+
+  * {
+    @apply border-border transition-colors duration-300 ease-in-out;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-geist-sans), sans-serif;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  }
+
+  /* Custom Scrollbar Styling */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: hsl(var(--background) / 0.5);
+    border-radius: 10px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary) / 0.6);
+    border-radius: 10px;
+    border: 2px solid transparent; /* Make border transparent initially */
+    background-clip: content-box; /* Important for border to not overlap thumb */
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary));
+  }
+}
+
+@layer utilities {
+  /* Glassmorphism utilities (subtle) */
+  .glass-card {
+    @apply bg-card/80 backdrop-blur-lg border border-border/30;
+  }
+  .glass-header {
+    @apply bg-background/70 backdrop-blur-md;
+  }
+
+  /* Soft Glows */
+  .text-glow-soft-primary { text-shadow: 0 0 8px hsl(var(--primary)/0.7); }
+  .text-glow-soft-accent { text-shadow: 0 0 8px hsl(var(--accent)/0.7); }
+  
+  .shadow-glow-soft-primary { box-shadow: 0 0 10px hsl(var(--primary)/0.5), 0 0 20px hsl(var(--primary)/0.3); }
+  .shadow-glow-soft-accent { box-shadow: 0 0 10px hsl(var(--accent)/0.5), 0 0 20px hsl(var(--accent)/0.3); }
+  .shadow-glow-soft-destructive { box-shadow: 0 0 10px hsl(var(--destructive)/0.5), 0 0 20px hsl(var(--destructive)/0.3); }
+
+  /* Animation Delays (can be extended as needed) */
+  .animation-delay-100 { animation-delay: 100ms; }
+  .animation-delay-200 { animation-delay: 200ms; }
+  .animation-delay-300 { animation-delay: 300ms; }
+  .animation-delay-400 { animation-delay: 400ms; }
+  .animation-delay-500 { animation-delay: 500ms; }
+  
+  .animated-bg-dots {
+     background-image: radial-gradient(hsl(var(--primary)/0.1) 1px, transparent 1px);
+     background-size: 20px 20px; /* Smaller dots */
+     animation: bg-pan 40s linear infinite; /* Slower pan */
+  }
+
+  @keyframes bg-pan {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 100%; }
+  }
+}
